@@ -18,27 +18,30 @@ function Products() {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <label>Name:</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br />
-      <label>Price:</label>
-      <input
-        type="text"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
-      <br />
-      <label>Description:</label>
-      <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <br />
+      <p>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </p>
+      <p>
+        <label>Price:</label>
+        <input
+          type="text"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+      </p>
+      <p>
+        <label>Description:</label>
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </p>
       <input type="submit" />
     </form>
   );

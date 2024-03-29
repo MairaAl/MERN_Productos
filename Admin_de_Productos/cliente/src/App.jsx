@@ -1,24 +1,19 @@
-import { useEffect, useState } from "react";
-import Products from "./Products";
-import ProductsList from "./ProductsList";
-import axios from "axios";
+import Details from "./Details";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
+import Update from "./Update";
+
 function App() {
-  const [products, setProducts] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/products/")
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-        setLoaded(true);
-      })
-      .catch((err) => console.log("Error: ", err));
-  }, []);
   return (
     <div>
-      <Products />
-      {loaded && <ProductsList products={products.products} />}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/products/" element={<Home />} />
+          <Route path="/products/:id" element={<Details />} />
+          <Route path="/products/update/:id" element={<Update />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

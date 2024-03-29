@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 
-function Details(props) {
-  const [product, setProduct] = useState({});
+function Details() {
+  const { id } = useParams();
+  const [product, setProduct] = useState();
+
   useEffect(() => {
+    console.log({ id });
     axios
-      .get("http://localhost:8000/api/products/" + props.id)
-      .then((res) => setProduct({ ...res.data }));
-  }, []);
+      .get(`http://localhost:8000/api/products/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setProduct({ ...res.data });
+      })
+      .catch((err) => console.error(err));
+  }, [id]);
+
   return (
     <div>
-      <p>{product.name}</p>
-      <p>Price: {product.price}</p>
-      <p>Description: {product.description}</p>
+      <div>Title: {product}</div>
+      <div>
+        <p>Name: </p>
+        <p>Price: </p>
+        <p>Description: </p>
+      </div>
     </div>
   );
 }
 
-Details.propTypes = {
-  id: PropTypes.string.isRequired, // id es una cadena y es obligatorio
-};
 export default Details;
